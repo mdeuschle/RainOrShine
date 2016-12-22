@@ -14,18 +14,25 @@ class WeatherViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet var currentTempLabel: UILabel!
     @IBOutlet var cityLabel: UILabel!
     @IBOutlet var currentWeatherImage: UIImageView!
-    @IBOutlet var currentWeatherTypeLabel: NSLayoutConstraint!
+    @IBOutlet var currentWeatherTypeLabel: UILabel!
     @IBOutlet var weatherTableView: UITableView!
 
+    var currentWeather: Weather!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        Weather().downloadWeatherData { 
-            
+        currentWeather = Weather()
+        currentWeather.downloadWeatherData {
+            self.updateUI()
         }
+    }
 
-
+    func updateUI() {
+        dateLabel.text = currentWeather.date
+        currentTempLabel.text = String(currentWeather.currentTemp)
+        cityLabel.text = currentWeather.cityName
+        currentWeatherTypeLabel.text = currentWeather.weatherType
+        currentWeatherImage.image = UIImage(named: currentWeather.weatherType)
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
