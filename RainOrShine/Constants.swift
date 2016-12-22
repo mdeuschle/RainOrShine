@@ -13,3 +13,6 @@ let lat = "lat="
 let lon = "&lon="
 let appID = "&appid="
 let apiKey = "410f10b49176eef3db7a6fe196ec891c"
+let currentWeatherURL = "\(baseURL)\(lat)35\(lon)139\(appID)\(apiKey)"
+
+typealias DownloadComplete = () -> ()
