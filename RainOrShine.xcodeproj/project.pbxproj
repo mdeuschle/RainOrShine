@@ -12,6 +12,7 @@
 		A816A4AC1E0CC2BD00529832 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A816A4AB1E0CC2BD00529832 /* DateFormatter.swift */; };
 		A816A4AE1E0CEFDF00529832 /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A816A4AD1E0CEFDF00529832 /* WeatherCell.swift */; };
 		A88DD6741E0DAC15002C2D70 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88DD6731E0DAC15002C2D70 /* Location.swift */; };
+		A88DD6761E0DB8CE002C2D70 /* Degrees.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88DD6751E0DB8CE002C2D70 /* Degrees.swift */; };
 		A89AAB7F1E0B3B5F00A8D0F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89AAB7E1E0B3B5F00A8D0F0 /* AppDelegate.swift */; };
 		A89AAB841E0B3B5F00A8D0F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A89AAB821E0B3B5F00A8D0F0 /* Main.storyboard */; };
 		A89AAB861E0B3B5F00A8D0F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A89AAB851E0B3B5F00A8D0F0 /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 		A816A4AB1E0CC2BD00529832 /* DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		A816A4AD1E0CEFDF00529832 /* WeatherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
 		A88DD6731E0DAC15002C2D70 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		A88DD6751E0DB8CE002C2D70 /* Degrees.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Degrees.swift; sourceTree = "<group>"; };
 		A89AAB7B1E0B3B5F00A8D0F0 /* RainOrShine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RainOrShine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A89AAB7E1E0B3B5F00A8D0F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A89AAB831E0B3B5F00A8D0F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				A816A4A71E0CB0A800529832 /* KelvinToFahrenheitConverter.swift */,
 				A816A4AB1E0CC2BD00529832 /* DateFormatter.swift */,
 				A88DD6731E0DAC15002C2D70 /* Location.swift */,
+				A88DD6751E0DB8CE002C2D70 /* Degrees.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				A816A4A81E0CB0A800529832 /* KelvinToFahrenheitConverter.swift in Sources */,
 				A89AAB981E0B548200A8D0F0 /* Weather.swift in Sources */,
 				A89AAB7F1E0B3B5F00A8D0F0 /* AppDelegate.swift in Sources */,
+				A88DD6761E0DB8CE002C2D70 /* Degrees.swift in Sources */,
 				A816A4AC1E0CC2BD00529832 /* DateFormatter.swift in Sources */,
 				A88DD6741E0DAC15002C2D70 /* Location.swift in Sources */,
 				A816A4AE1E0CEFDF00529832 /* WeatherCell.swift in Sources */,

@@ -36,6 +36,19 @@ class WeatherViewController: UIViewController, UITableViewDelegate, UITableViewD
         locationAuthStatus()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        clearDataOnLoad()
+    }
+
+    func clearDataOnLoad() {
+        dateLabel.text = ""
+        currentTempLabel.text = ""
+        cityLabel.text = ""
+        currentWeatherTypeLabel.text = ""
+        currentWeatherImage.image = UIImage()
+    }
+
     func locationAuthStatus() {
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             if let currentLoc = locationManger.location {
@@ -63,7 +76,7 @@ class WeatherViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     func updateUI() {
         dateLabel.text = currentWeather.date
-        currentTempLabel.text = String(currentWeather.currentTemp)
+        currentTempLabel.text = currentWeather.currentTemp.degrees
         cityLabel.text = currentWeather.cityName
         currentWeatherTypeLabel.text = currentWeather.weatherType
         currentWeatherImage.image = UIImage(named: currentWeather.weatherType)
