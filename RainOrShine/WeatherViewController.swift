@@ -8,8 +8,9 @@
 
 import UIKit
 import Alamofire
+import CoreLocation
 
-class WeatherViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class WeatherViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
 
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var currentTempLabel: UILabel!
@@ -21,15 +22,43 @@ class WeatherViewController: UIViewController, UITableViewDelegate, UITableViewD
     var currentWeather: Weather!
     var forecastWeather: Forecast!
     var forecasts = [Forecast]()
+    var locationManger = CLLocationManager()
+    var currentLocation: CLLocation!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configLocactionManager()
         currentWeather = Weather()
-        currentWeather.downloadWeatherData {
-            self.getForecast {
-                self.updateUI()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        locationAuthStatus()
+    }
+
+    func locationAuthStatus() {
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            if let currentLoc = locationManger.location {
+                currentLocation = currentLoc
+                Location.sharedInstance.lat = currentLocation.coordinate.latitude
+                Location.sharedInstance.lon = currentLocation.coordinate.longitude
+                currentWeather.downloadWeatherData {
+                    self.getForecast {
+                        self.updateUI()
+                    }
+                }
             }
+        } else {
+            locationManger.requestWhenInUseAuthorization()
+            locationAuthStatus()
         }
+    }
+
+    func configLocactionManager() {
+        locationManger.delegate = self
+        locationManger.desiredAccuracy = kCLLocationAccuracyBest
+        locationManger.requestWhenInUseAuthorization()
+        locationManger.startMonitoringSignificantLocationChanges()
     }
 
     func updateUI() {
@@ -48,8 +77,8 @@ class WeatherViewController: UIViewController, UITableViewDelegate, UITableViewD
                         for obj in list {
                             let forecast = Forecast(forecastDic: obj)
                             self.forecasts.append(forecast)
-                            print("OBJ: \(obj)")
                         }
+                        self.forecasts.remove(at: 0)
                         self.weatherTableView.reloadData()
                     }
                 }
@@ -70,7 +99,7 @@ class WeatherViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.configCell(forecast: forecast)
         return cell
     }
-
     
-
+    
+    
 }
