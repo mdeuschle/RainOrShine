@@ -48,29 +48,29 @@ class Weather {
 
     func downloadWeatherData(completed: @escaping DownloadComplete) {
 
-        let url = URL(string: currentWeatherURL)!
-        Alamofire.request(url).responseJSON { response in
-            if let dic = response.result.value as? [String: Any] {
+        if let url = URL(string: currentWeatherURL) {
+            Alamofire.request(url).responseJSON { response in
+                if let dic = response.result.value as? [String: Any] {
 
-                if let name = dic["name"] as? String {
-                    self._cityName = name.capitalized
-                }
+                    if let name = dic["name"] as? String {
+                        self._cityName = name.capitalized
+                    }
 
-                if let weather = dic["weather"] as? [[String: Any]] {
-                    if let main = weather[0]["main"] as? String {
-                        self._weatherType = main.capitalized
+                    if let weather = dic["weather"] as? [[String: Any]] {
+                        if let main = weather[0]["main"] as? String {
+                            self._weatherType = main.capitalized
+                        }
+                    }
+
+                    if let main = dic["main"] as? [String: Any] {
+                        if let temp = main["temp"] as? Double {
+
+                            self._currentTemp = KelvinToFahrenheitConverter(kelvin: temp).convertKToF()
+                        }
                     }
                 }
-
-                if let main = dic["main"] as? [String: Any] {
-                    if let temp = main["temp"] as? Double {
-                        let kelvin = (temp * (9/5) - 459.67)
-                        let kelvin2Far = Double(round(10 * kelvin/10))
-                        self._currentTemp = kelvin2Far
-                    }
-                }
+                completed()
             }
-            completed()
         }
     }
 }
